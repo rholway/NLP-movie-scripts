@@ -1,0 +1,4 @@
+embeddings {
+  tensor_name: "embeddings/Variable:0"
+  metadata_path: "/Users/ryanholway/Documents/galvanize/cap3/src/log/metadata.tsv"
+}

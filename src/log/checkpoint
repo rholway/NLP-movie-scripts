@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/ryanholway/Documents/galvanize/cap3/src/log/model.ckpt"
+all_model_checkpoint_paths: "/Users/ryanholway/Documents/galvanize/cap3/src/log/model.ckpt"
