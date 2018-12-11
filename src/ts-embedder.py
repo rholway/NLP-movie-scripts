@@ -90,7 +90,7 @@ def plot_with_labels(low_dim_embs, labels, filename):
           ha='right',
           va='bottom')
 
-    plt.savefig('tsne1')
+    plt.savefig('tsne-trial2')
 
 if __name__ == '__main__':
     # disable Tensorflow warnings
@@ -112,13 +112,13 @@ if __name__ == '__main__':
 
     # ALSO TRY ON FULL SCRIPTS
     # Step 1 - Read in data
-    df = pd.read_csv('../data/scripts-rating-df')
+    df = pd.read_csv('../data/partially-lem-df')
     # Make each movie script a list of strings
     scripts_list = df['script'].apply(make_script_set_of_tokens).tolist()
     # Just take the first movie script
     vocabulary = [item for sublist in scripts_list for item in sublist]
     # Step 2 - Build the dictionary and replace rare words with UNK token.
-    vocabulary_size = 25000
+    vocabulary_size = 50000
 
     # Filling 4 global variables:
     # data - list of codes (integers from 0 to vocabulary_size-1).
