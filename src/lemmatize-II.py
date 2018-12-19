@@ -5,11 +5,11 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-nlp = spacy.load('en_core_web_lg')
-nlp.Defaults.stop_words.add('pron')
+nlp = spacy.load('en_core_web_sm')
+# nlp.Defaults.stop_words.add('pron')
 
 
-# from spacy.lang.en.stop_words import STOP_WORDS
+from spacy.lang.en.stop_words import STOP_WORDS
 import os,re,pickle
 # plt.style.use('bmh')
 
@@ -18,7 +18,7 @@ import os,re,pickle
 # from mylib import *
 
 ## lemmatize string function
-def lemmatize_string(doc, stop_words=stop_words):
+def lemmatize_string(doc, stop_words=STOP_WORDS):
     """
     takes a list of strings where each string is a document
     returns a list of strings
@@ -235,17 +235,17 @@ def lemmatize_string(doc, stop_words=stop_words):
     doc = doc.translate(PUNCT_DICT)
 
     # remove unicode
-    clean_doc = "".join([char for char in doc if char in printable])
-
+    clean_doc = "".join([char for char in doc if char in printable and char not in stop_words])
+    return clean_doc
     # Run the doc through spaCy
-    doc = nlp(clean_doc)
+    # doc = nlp(clean_doc)
 
     # Lemmatize and lower text
-    tokens = [re.sub("\W+","",token.lemma_.lower()) for token in doc ]
-    tokens = [t for t in tokens if len(t) > 1]
+    # tokens = [re.sub("\W+","",token.lemma_.lower()) for token in doc ]
+    # tokens = [t for t in tokens if len(t) > 1]
 
 
-    return ' '.join(w for w in tokens if w not in stop_words)
+    # return ' '.join(w for w in tokens if w not in stop_words)
 
 
 if __name__ == '__main__':
@@ -260,14 +260,16 @@ if __name__ == '__main__':
     # mean_len = plot_df['plot'].str.len().groupby(plot_df['plot']).mean()
 
     # for movie scripts
-    '''
+
     script_df = pd.read_csv('../data/scripts-rating-df')
     script_df['script'] = script_df['script'].apply(lemmatize_string)
-    script_df.to_csv('../data/lem-scripts-df')
-    '''
+    script_df.to_csv('../data/for-embedding-df')
+
     # trial caps df
-    d = {'col1': [" here's continue movie SCRIPT with contd CHARACTERS available",
-    "SCENE one is with youknowwho CUT int ext cont "]
+    '''
+    d = {'col1': [" here's continue  10 , 53 movie SCRIPT with contd CHARACTERS available",
+    "SCENE one- is with youknowwho ==CUT ++int ext cont if that the "]
     , 'col2': [3, 4]}
     trial_df = pd.DataFrame(data=d)
-    # trial_df['col3'] = trial_df['col1'].apply(lemmatize_string)
+    trial_df['col3'] = trial_df['col1'].apply(lemmatize_string)
+    '''
