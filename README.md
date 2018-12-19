@@ -74,23 +74,28 @@ Both bagging and random forests attempt to take many low-bias, high-variance ful
 
 In Boosting, we start with a high-bias, low-variance decision stump (decision tree with only a couple splits), and arrange many in a series, passing the residuals of the first model as the target of the next model, and iteratively chip away at the bias while maintaining low-variance.
 
-**Modeling with (almost) full script tf-idf vs. lemmatized script tf-idf**
+**Modeling with full script tf-idf vs. lemmatized script tf-idf**
 
-![ROC - full scripts](images/roc-plot-scripts.png)
+![ROC - full scripts](images/roc-full-script.png)
 
-![ROC - lem scripts](images/roc-plot-lemmy-scripts.png)
+![ROC - lem scripts](images/roc-plot-lem-scr-bud.png)
 
-We can see increased accuracy with the models that are run on the lemmatized movie scripts rather than the whole movie scripts.  By taking out commonly used words that often have little meaning (stop words), the models can train on words within the documents that have higher significance.
+We can see increased accuracy with the models that are run on the lemmatized movie scripts rather than the whole movie scripts.  The later model was also run with movie budgets incorporated into the training data.  By taking out commonly used words that often have little meaning (stop words), the models can train on words within the documents that have higher significance.
 
 ### Natural Language Processing
 
-Natural language processing (NLP) is an area of computer science and artificial intelligence concerned with the interactions between computers and human languages. In particular: how to program computers to fruitfully process large amounts of natural language data? - Wikipedia 
+Natural language processing (NLP) is an area of computer science and artificial intelligence concerned with the interactions between computers and human languages. In particular: how to program computers to fruitfully process large amounts of natural language data? - Wikipedia
 
-### Tensorflow - word2vec
+### Tensorflow - Word2Vec
 
 **Semantics** - branch of linguistics and logic concerned with meaning.
 
 **Distributional Hypothesis** - words that appear in the same contexts share semantic meaning.
+
+**Distributional Similarity** - can get a lot of value from representing the meaning of a word by looking at the context in  which it appears and doing something with those contexts.
+- Look at the environment in which a word appears (the context).
+
+**"You shall know a word by the company it keeps"** -- J.K. Firth
 
 **Word embedding** - words or phrases from a vocabulary are mapped to vectors of real numbers. Capable of capturing context of a word in a document in relation to other words in the document.
 
@@ -125,3 +130,25 @@ When the model is making the comparisons of targets and context, the targets (wo
 After training on the 1,000 movie scripts, lets take a look at the top 500 words with the most similar word embedding vectors.
 
 ![Word Embeddings](images/tsne-trial2.png)
+
+### Gensim - Word2Vec
+
+Each word in the corpus is associated with a vector of length *n*.  Based on the context of a target word (the words surrounding the target word, with a window size *m*), the vector values are updated.  After the vectors for the entire corpus are updated, words can be compared.
+
+Word  | Similar Words  
+-------- | ----
+Mountain  | ridge, river, terrain, ocean, valley
+Fun  | terrific, thrill, joke, party, tonight
+Run  | race, sprint, rush, hurry, dash
+Cake | chocolate, cookies, cheese, steak, bacon
+Talk | complain, argue, tell, listen, speak
+Christmas | xmas, birthday, halloween, decoration, holiday
+Winter | summer, snow, chilly, overcast, indoors
+
+
+
+# Resources
+- Wikipedia
+- www.tensorflow.org
+- www.radimrehurek.com/gensim
+- Stanford University School of Engineering - Christopher Manning
