@@ -14,7 +14,7 @@
 - Create tf-idf of lemmatized text and movie scripts.
 - Reduce dimensions of data to extract patterns.
 - Run a model to predict if a movie will have a 'Good' score or a 'Bad' score, according to Rotten Tomatoes.
--
+- Before production companies decide which movies to produce, can they narrow down the movie scripts before even having to read them?
 
 ### Exploratory Data Analysis
 
