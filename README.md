@@ -95,7 +95,7 @@ Natural language processing (NLP) is an area of computer science and artificial 
 **Distributional Similarity** - can get a lot of value from representing the meaning of a word by looking at the context in  which it appears and doing something with those contexts.
 - Look at the environment in which a word appears (the context).
 
-**"You shall know a word by the company it keeps"** -- J.K. Firth
+**"You shall know a word by the company it keeps"** -- J.R. Firth
 
 **Word embedding** - words or phrases from a vocabulary are mapped to vectors of real numbers. Capable of capturing context of a word in a document in relation to other words in the document.
 
